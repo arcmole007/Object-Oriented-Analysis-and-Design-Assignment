@@ -17,13 +17,16 @@ public class Mouse extends GameObject{
     
   
     public void tick(){
+        move();
+    }
+
+    public void move(){
         x += velX;
         y += velY;
     }
 
     public void render(Graphics g){
-        g.setColor(Color.white);
-
+        g.setColor(Color.gray);
         g.fillRect(x, y, 20, 20);
     }
 }

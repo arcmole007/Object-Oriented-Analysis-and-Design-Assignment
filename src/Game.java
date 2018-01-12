@@ -18,6 +18,7 @@ public class Game extends Canvas implements Runnable{
         new Window(WIDTH, HEIGHT, "OOAD Assignment!",this);
 
         handler.addObject(new Mouse(0, 0, ID.Mouse));
+        handler.addObject(new Cat(0, 40, ID.Cat));
     }
 
     public synchronized void start(){
@@ -84,7 +85,19 @@ public class Game extends Canvas implements Runnable{
         g.dispose();
         bs.show();
     }
-
+    /**Method to clamp the object from moving outside the wall */
+    public static int clamp(int var, int min, int max){
+        if(var >= max){
+            return var = max;
+        }
+        else if(var <= min){
+            return var = min;
+        }
+        else{
+            return var;
+        }
+    }
+    
     public static void main(String[] args){
         new Game();
     }
