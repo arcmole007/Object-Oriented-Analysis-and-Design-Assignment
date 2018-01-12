@@ -2,6 +2,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 
@@ -12,13 +13,16 @@ public class Game extends Canvas implements Runnable{
     private boolean running = false;
 
     private Handler handler;
+    Random r = new Random();
+
     public Game(){
         handler = new Handler();
-        //this.addKeyListener();
+        this.addKeyListener(new KeyInput(handler));
         new Window(WIDTH, HEIGHT, "OOAD Assignment!",this);
 
-        handler.addObject(new Mouse(0, 0, ID.Mouse));
-        handler.addObject(new Cat(0, 40, ID.Cat));
+        handler.addObject(new Mouse(0, 0, ID.Mouse, handler));
+        handler.addObject(new Cat(0, 40, ID.Cat, handler));
+        handler.addObject(new Cheese(r.nextInt(600), r.nextInt(600), ID.Cheese));
     }
 
     public synchronized void start(){
@@ -38,6 +42,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     public synchronized void run(){
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000/ amountOfTicks;

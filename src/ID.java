@@ -1,5 +1,6 @@
 public enum ID{
 
    Mouse(),
-   Cat();
+   Cat(),
+   Cheese();
 }
