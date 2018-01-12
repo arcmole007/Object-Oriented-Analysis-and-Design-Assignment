@@ -45,8 +45,8 @@ public class Mouse extends GameObject {
 
             if(tempObject.getId() == ID.Cat){
                 if(getBounds().intersects(tempObject.getBounds())){
-                    this.setVelX(0);
-                    this.setVelY(0);
+                   x += velX * -1;
+                   y += velY * -1;
                 }
             }
         }
