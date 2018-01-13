@@ -43,7 +43,7 @@ public class Cat extends GameObject {
         }
     }
     public void render(Graphics g) {
-        g.setColor(Color.yellow);
+        g.setColor(Color.red);
         g.fillRect(x, y, 20, 20);
 
     }

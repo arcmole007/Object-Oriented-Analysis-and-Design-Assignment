@@ -3,5 +3,7 @@ public enum ID{
    Mouse(),
    Cat(),
    Cheese(),
-   Wall();
+   Wall(),
+   Floor(),
+   Tile();
 }

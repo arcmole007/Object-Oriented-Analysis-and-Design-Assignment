@@ -10,12 +10,15 @@ public class Mouse extends GameObject {
     Random r = new Random();
     Handler handler;
 
+    //int hp = 3;
+    int cheeseEat = 0;
+
     public Mouse(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
 
-        // velX = 5;
-        //velY = 5;
+        //velX = r.nextInt(5);
+        //velY = r.nextInt(5);
 
     }
 
@@ -25,7 +28,7 @@ public class Mouse extends GameObject {
 
     public void tick() {
         move();
-        outOfWall();
+        //outOfWall();
         collision();
     }
 
@@ -43,12 +46,27 @@ public class Mouse extends GameObject {
         for(int i = 0; i < handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getId() == ID.Cat){
+            if(tempObject.getId() == ID.Wall){
                 if(getBounds().intersects(tempObject.getBounds())){
                    x += velX * -1;
                    y += velY * -1;
                 }
             }
+            if(tempObject.getId() == ID.Cat){
+                if(getBounds().intersects(tempObject.getBounds())){
+                    //hp -= 1;
+                    handler.removeObject(this);
+                }
+            }
+            if(tempObject.getId() == ID.Cheese){
+                if(getBounds().intersects(tempObject.getBounds())){
+                    //hp -= 1;
+                    cheeseEat++;
+                    System.out.println(cheeseEat);
+                }
+            }
+            
+                
         }
     }
 
