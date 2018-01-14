@@ -11,7 +11,7 @@ public class Mouse extends GameObject {
     Handler handler;
 
     //int hp = 3;
-    int cheeseEat = 0;
+    public int cheeseEat = 0;
 
     public Mouse(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -30,6 +30,7 @@ public class Mouse extends GameObject {
         move();
         //outOfWall();
         collision();
+        transform();
     }
 
     public void move() {
@@ -62,11 +63,35 @@ public class Mouse extends GameObject {
                 if(getBounds().intersects(tempObject.getBounds())){
                     //hp -= 1;
                     cheeseEat++;
-                    System.out.println(cheeseEat);
+                    //System.out.println(cheeseEat);
                 }
             }
             
                 
+        }
+    }
+
+    public int getCheeseEat(){
+        return cheeseEat;
+    }
+
+    public void transform(){
+        if(cheeseEat == 4){
+           //System.out.println("transform");
+           for(int i = 0 ; i < handler.object.size();i++){
+               GameObject tempObject = handler.object.get(i);
+
+               if(tempObject.getId() == ID.Mouse){
+                   System.out.println(tempObject.getX());
+                   handler.addObject(new SuperMouse((int)tempObject.getX(), (int)tempObject.getY(), ID.SuperMouse, handler));
+               }
+           }
+
+           handler.removeObject(this);
+           // getClass(). = new SuperMouse(this.getX()*20, this.getY()*20, ID.SuperMouse, handler);
+
+           // handler.addObject(new SuperMouse(100*20, 200*20, ID.SuperMouse, handler));
+            //handler.removeObject(this);
         }
     }
 

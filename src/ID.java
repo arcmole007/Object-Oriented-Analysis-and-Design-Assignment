@@ -5,5 +5,6 @@ public enum ID{
    Cheese(),
    Wall(),
    Floor(),
-   Tile();
+   Tile(),
+   SuperMouse();
 }
