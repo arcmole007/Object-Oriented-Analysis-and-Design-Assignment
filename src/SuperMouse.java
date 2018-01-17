@@ -13,11 +13,17 @@ public class SuperMouse extends Mouse{
 
     public void tick(){
         move();
+        outOfWall();
     }
 
     public void move() {
         x += velX;
         y += velY;
+    }
+
+    public void outOfWall() {
+        x = Game.clamp(x, 0, Game.WIDTH - 45);
+        y = Game.clamp(y, 0, Game.HEIGHT - 70);
     }
 
     public void render(Graphics g){

@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 public class Cat extends GameObject {
 
     Handler handler;
+    Random r = new Random();
 
     public Cat(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -17,12 +19,12 @@ public class Cat extends GameObject {
     public void tick() {
         move();
         outOfBounds();
-        //collision();
+        collision();
     }
 
     public void move() {
-        x += velX;
-        y += velY;
+        x += r.nextInt(5);
+        y += r.nextInt(5);
     }
 
     public void outOfBounds() {
@@ -36,8 +38,14 @@ public class Cat extends GameObject {
 
             if(tempObject.getId() == ID.Mouse){
                 if(getBounds().intersects(tempObject.getBounds())){
-                    this.setVelX(0);
-                    this.setVelY(0);
+                    this.x *= -1;
+                    this.y *= -1;
+                }
+            }
+            if(tempObject.getId() == ID.Wall){
+                if(getBounds().intersects(tempObject.getBounds())){
+                   this.setVelX(0); 
+                   this.setVelY(0);
                 }
             }
         }

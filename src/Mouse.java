@@ -16,7 +16,7 @@ public class Mouse extends GameObject {
     public Mouse(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-
+        System.out.println();
         //velX = r.nextInt(5);
         //velY = r.nextInt(5);
 
