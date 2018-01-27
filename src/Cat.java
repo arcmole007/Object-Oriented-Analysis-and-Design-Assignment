@@ -24,6 +24,7 @@ public class Cat extends GameObject {
 
     public void move() {
         x += r.nextInt(5);
+        
         y += r.nextInt(5);
     }
 
